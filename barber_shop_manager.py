@@ -5,7 +5,7 @@ servicios_solicitados = []
 caja_dia = []
 
 while True:
-    print("1. Registrar Turno - 2. Ver Reporte del Día - 3. Cerrar Sistema")
+    print("1. Registrar Turno - 2. Ver Reporte del Día - 3. Cancelar Turno - 4. Cerrar Sistema")
     opcion = input("Ingrese la opcion que desea consulta: ")
     
     match opcion:
@@ -28,7 +28,6 @@ while True:
                 print(f"ERROR: Servicio no reconocido. Turno cancelado.")
                 continue
             
-            
             clientes_registrados.append(nombre_cliente)
             servicios_solicitados.append(servicios)
             caja_dia.append(precio_final)
@@ -45,9 +44,30 @@ while True:
                 print("No se registraron turnos en la jornada de hoy.")
                 
         case "3":
+            
+            cliente_baja = input("Indique el nombre del cliente para dar de baja: ").strip().title()
+            
+            if cliente_baja in clientes_registrados:
+                posicion = clientes_registrados.index(cliente_baja)
+                print("Cliente encontrado")
+                
+                clientes_registrados.pop(posicion)
+                servicios_solicitados.pop(posicion)
+                caja_dia.pop(posicion)
+                
+                print(f"El turno de {cliente_baja} fue eliminado con éxito")
+                
+            else:
+                print("ERROR: El cliente no tiene ningún turno registrado.")
+            
+            
+        case "4":
+            
             print("Saliendo del sistema...")
             break
+        
         case _:
+            
             print("Opción inválida. Intente de nuevo.")
             
     
