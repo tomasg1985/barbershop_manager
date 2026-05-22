@@ -1,35 +1,52 @@
-# barbershop-manager.py
-Software de consola en Python para la gestión integral de turnos, servicios y control de caja diaria en barberías. Desarrollado con enfoque incremental, programación defensiva y manejo avanzado de estructuras de datos lineales
-
 # 💈 BarberShop Manager - Sistema de Gestión de Turnos y Caja
 
-Software interactivo de consola diseñado para la administración automatizada de turnos, control de servicios y auditoría de caja diaria para una barbería/peluquería. Desarrollado en Python bajo un enfoque de programación defensiva y estructuración limpia de datos.
+Software interactivo de consola desarrollado en Python para la administración centralizada de turnos, control de servicios y auditoría de caja diaria para una barbería. Aplica un enfoque corporativo mediante programación defensiva, control estricto de flujo y sincronización indexada de estructuras lineales.
 
-Este proyecto forma parte de un portafolio de desarrollo incremental. Comienza como una estructura de control centralizada por menús y evolucionará de forma guiada incorporando la gestión avanzada de colecciones lineales y lógica de negocio real.
-
----
-
-## 🚀 Funcionalidades Planificadas (Desarrollo Incremental)
-
-* **Fase 1: Interfaz Base y Enrutamiento**: Maquetación del menú interactivo mediante bucles infinitos controlados y estructuras de selección múltiple (`match/case`) para un direccionamiento sin fallos.
-* **Fase 2: Registro Dinámico y Memoria Lineal**: Persistencia temporal de clientes, servicios solicitados y flujo de caja mediante múltiples listas indexadas interconectadas.
-* **Fase 3: Gestión de Cancelaciones y Ordenamiento**: Implementación de lógica de remoción de elementos para la baja de turnos y algoritmos de ordenamiento cronológico para la agenda diaria.
-* **Fase 4: Módulo de Auditoría**: Reportes automatizados de facturación total, promedio de ticket por cliente y estadísticas de los servicios más solicitados del día.
+Este proyecto forma parte de un portafolio técnico que demuestra el dominio en la persistencia temporal en memoria, manipulación avanzada de colecciones y mitigación de errores de lógica o ejecución en entornos interactivos.
 
 ---
 
-## 🛠️ Conceptos a Implementar (Guías 1-7)
+## 🚀 Funcionalidades Implementadas
 
-* **Control de Flujo Continuo**: Bucles `while True` para mantener el sistema operativo hasta una orden de salida explícita.
-* **Estructuras de Decisión Múltiple**: Uso nativo de `match/case` para procesar las opciones del menú de forma limpia y escalable.
-* **Administración de Estructuras Lineales**: Operaciones avanzadas sobre listas utilizando métodos de inserción, extracción y ordenamiento.
+* **Módulo de Altas (Registrar Turno)**: Captura y sanitización de datos de clientes y servicios mediante métodos de cadenas (`.strip().title()`). Implementa un sistema de tarifas fijas automatizado según la opción seleccionada.
+* **Control de Excepciones Lógicas (Filtros de Flujo)**: Desvío preventivo mediante la sentencia `continue` que aborta el registro de datos si el usuario ingresa un servicio no contemplado en el catálogo comercial, evitando registros fantasmas o desincronizados.
+* **Módulo de Bajas (Cancelar Turno)**: Implementación de lógica de eliminación indexada. El sistema busca la existencia del cliente mediante el operador `in`, localiza su ubicación en memoria con `.index()` y remueve en simultáneo los datos de las tres listas (`clientes`, `servicios` y `caja`) utilizando `.pop(posicion)`.
+* **Módulo de Auditoría (Reporte de Jornada)**: Sistema de control que valida la existencia de movimientos comerciales antes de generar reportes. Utiliza funciones de agregación (`sum()`) para desglosar la recaudación neta, el historial de clientes y los servicios prestados.
 
 ---
 
-## 📋 Estado del Proyecto: Paso 1 (Esqueleto del Menú)
-Actualmente, el sistema se encuentra en su **Fase 1**. El foco está puesto exclusivamente en el diseño de la arquitectura del menú de consola y la captura segura de comandos de usuario.
+## 🛠️ Conceptos Técnicos Consolidados (Guía 7)
+
+* **Estructuras de Datos Lineales**: Inicialización, lectura, mutación y vaciado controlado de listas dinámicas (`[]`).
+* **Sincronización por Índices**: Coherencia relacional entre múltiples estructuras de datos independientes conectadas mediante su número de posición física en memoria.
+* **Flujos de Control Interactivos**: Bucles infinitos eficientes (`while True`), enrutamiento limpio mediante estructuras múltiples (`match/case`) y cortes de ejecución controlados (`break`).
+
+---
+
+## 📋 Arquitectura de la Interfaz (Consola)
+
+```text
+=== CONTROL DE OPERACIONES ===
+1. Registrar Turno - 2. Ver Reporte del Día - 3. Cancelar Turno - 4. Cerrar Sistema
+
+Ingrese la opcion que desea consultar: 1
+Ingrese el nombre del cliente: tomas
+Seleccione el servicio que desea (Elija Corte o Barba): corte
+El precio por corte es de: 3000
+Tomas Tu turno para Corte quedó registrado con éxito
+
+Ingrese la opcion que desea consultar: 2
+Clientes de hoy: ['Tomas']
+Servicios realizados: ['Corte']
+Total recaudado en caja: $3000
+
+Ingrese la opcion que desea consultar: 3
+Indique el nombre del cliente para dar de baja: tomas
+Cliente encontrado
+El turno de Tomas fue eliminado con éxito
+```
 
 ---
 
 ## 🎓 Trayecto Formativo
-Proyecto desarrollado desde cero como parte del trayecto formativo en **Talento Tech - Consolidación de Base (Guías 1-7)**. Diseñado con el objetivo de demostrar buenas prácticas en arquitectura de software de consola y manejo de flujos interactivos.
+Proyecto de nivelación y consolidación de base desarrollado de forma incremental como parte del trayecto formativo en **Talento Tech (Guías 1-7)**. Demuestra la capacidad de estructurar sistemas interactivos comerciales robustos mediante algoritmos de búsqueda y extracción sobre colecciones indexadas.

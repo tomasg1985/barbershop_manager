@@ -28,18 +28,31 @@ while True:
                 print(f"ERROR: Servicio no reconocido. Turno cancelado.")
                 continue
             
-            clientes_registrados.append(nombre_cliente)
-            servicios_solicitados.append(servicios)
-            caja_dia.append(precio_final)
+            nuevo_turno = {
+                "cliente" : nombre_cliente,
+                "servicio" : servicios,
+                "precio" : precio_final
+            }
+            
+            clientes_registrados.append(nuevo_turno)
             
             print(f"{nombre_cliente} Tu turno para {servicios} quedó registrado con éxito")
             
         case "2":
             
             if clientes_registrados:
-                print(f"\nClientes de hoy: {clientes_registrados}")
-                print(f"Servicios realizados: {servicios_solicitados}")
-                print(f"Total recaudado en caja: ${sum(caja_dia)}")
+                
+                total_caja = 0
+                
+                print("\n=== REPORTE DE TURNOS DE LA JORNADA ===")
+                
+                for turno in clientes_registrados:
+                    print(f"Cliente: {turno['cliente']} | Servicio: {turno['servicio']} | Precio: ${turno['precio']}")
+                    
+                    total_caja += turno["precio"]
+                    
+                print(f"=======================================")
+                print(f"Total recaudado en caja: ${total_caja}\n")
             else:
                 print("No se registraron turnos en la jornada de hoy.")
                 
@@ -47,13 +60,17 @@ while True:
             
             cliente_baja = input("Indique el nombre del cliente para dar de baja: ").strip().title()
             
-            if cliente_baja in clientes_registrados:
-                posicion = clientes_registrados.index(cliente_baja)
+            posicion_encontrada = -1
+            
+            for i in range(len(clientes_registrados)):
+                if clientes_registrados[i]["cliente"] == cliente_baja:
+                    posicion_encontrada = i
+                    break
+                
+            if posicion_encontrada != -1:
                 print("Cliente encontrado")
                 
-                clientes_registrados.pop(posicion)
-                servicios_solicitados.pop(posicion)
-                caja_dia.pop(posicion)
+                clientes_registrados.pop(posicion_encontrada)
                 
                 print(f"El turno de {cliente_baja} fue eliminado con éxito")
                 
