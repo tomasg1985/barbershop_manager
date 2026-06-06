@@ -1,6 +1,6 @@
 corte = 3000
 barba = 2000
-clientes_registrados = []
+clientes_registrados = {}
 
 
 # REGISTRO DE TURNO 
